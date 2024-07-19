@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block container %}
+    <div class="container">
+        <div class="savol">
+            <h4 id="list-item-1">{{savol.question}}?</h4>
+        </div>
+        <form  method="POST">
+
+            {% csrf_token %}
+
+            {{form.as_p}}
+
+            <button type="submit" class="btn btn-outline-success">Yuborish</button>
+
+        </form>
+    </div>
+
+{% endblock %}
+
+{% comment %} 
+<label for="exampleDataList" class="form-label">Datalist example</label>
+        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+        <datalist id="datalistOptions">
+            <option value="San Francisco">
+            <option value="New York">
+            <option value="Seattle">
+            <option value="Los Angeles">
+            <option value="Chicago">
+        </datalist> {% endcomment %}

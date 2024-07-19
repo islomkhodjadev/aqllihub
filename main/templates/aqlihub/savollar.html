@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+
+
+    <div class="container">
+        <ol class="list-group list-group-numbered">
+          {% for savol in savollar%}
+          
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                {% if request.user == savol.user %}<h3>	<a href="{% url 'delete_savol' savol_id=savol.pk%}" style="text-decoration: none;">&#128465;</a></h3>{% endif %}
+                <a href="{% url 'savol' savol.pk %}"><div class="fw-bold">{{savol.question}} ?</div></a>
+               Turkum: {{ savol.category.name }}
+               <br>
+              <a href="{% url 'profile' username=savol.user.username %}"> Foydalanuvchi: {{ savol.user.username}}</a>
+              </div>
+              
+              <span class="badge bg-primary rounded-pill">{{savol.javoblar}}</span>
+            </li>
+           {% endfor %}
+          </ol>
+          <a class="btn btn-primary" href="{% url "add_savol" %}" role="button">+</a>
+        </div>
+         
+        {% endblock %}

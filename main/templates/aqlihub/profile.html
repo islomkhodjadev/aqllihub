@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block container%}
+
+    <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+        <div class="card p-4">
+            <div class=" image d-flex flex-column justify-content-center align-items-center"> <button
+                    class="btn btn-secondary"> <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static "aqlihub/img/defaultuser.jpg" %}{% endif %}" height="100"
+                        width="100" /></button> <span class="name mt-3">Foydalanuvchi: {{user.username}}</span> <span
+                    class="idd">Email: {{user.email}}</span>
+                
+                
+                <div class="text mt-3">Info: {{user.info}}</div>
+                {% if request.user == user%}
+                <div class=" d-flex mt-2"><a href="{% url "edit_profile" %}"> <button  class="btn btn-primary">Malumotlarni o'zgartirish</button> </a> </div>
+                <br>
+                <a href="{% url "savollar" username=request.user.username %}"> <button type="button" class="btn btn-primary"> Mening Savollar</button> </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+  {% endblock %}

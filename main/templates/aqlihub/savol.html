@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block container%}
+
+    <div class="container" >
+        <div class="savol">
+          
+            <h4 id="list-item-1">{{savol.question}}?</h4>
+        </div>
+
+        <div class="accordion" id="accordionExample">
+          {% for javob in savol.hamma_javoblar%}
+            <div class="accordion-item" >
+              <h2 class="accordion-header">
+                <h6><a href="{% url 'profile' username=javob.user.username %}"> Foydalanuvchi: {{ javob.user.username}}</a></h6>
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" 
+                style="background-color: {% if javob.togri %}#a2f79c{% else %}#f79c9c{% endif %}; flex-grow: 0;"                
+                >
+                {% if request.user == javob.user or request.user == savol.user %}<a href="{% url 'delete_javob' savol_id=savol.pk javob_id=javob.pk %}" style="text-decoration: none;"><h3>	&#128465;</h3></a>{% endif %}
+                  {% if javob.togri %}
+                  <a href="{% url 'check' savol_id=savol.pk javob_id=javob.pk %}" style="text-decoration: none;"><h3>&#10004;</h3></a>
+                  {% else %}
+                  <a href="{% url 'check' savol_id=savol.pk javob_id=javob.pk %}" style="text-decoration: none;"><h3>&#10005;</h3></a>
+                  {% endif %}
+                  
+                   Savol: {{javob.javob|truncatewords:3}}
+                  <br>
+                  
+                </button>
+                
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                
+                {{javob.javob}}  
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <a class="btn btn-primary" href="{% url 'add_javob' savol.pk %}" role="button">+</a>
+    </div>
+ {% endblock %}

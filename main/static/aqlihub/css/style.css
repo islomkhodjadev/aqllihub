@@ -1,0 +1,38 @@
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    margin:10px;
+}
+
+.container {
+    padding :10px;
+}
+
+.categories { 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 20px;
+}
+
+.categories button {
+    max-width: 200px;
+    max-height: 50px;
+    margin: 10px;
+}
+
+
+@media (max-width: 600px) {
+    .cards {
+      grid-template-columns: 1fr; /* Only one column on mobile */
+    }
+  }
+  
+
+body.dark {
+    background-color: #212529;
+}
+
